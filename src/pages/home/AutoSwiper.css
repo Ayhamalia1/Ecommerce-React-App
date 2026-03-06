@@ -1,0 +1,521 @@
+/* AutoSwiper.css */
+
+/* ========================================
+   Loading State
+======================================== */
+.swiper-loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.loading-spinner {
+  width: 80px;
+  height: 80px;
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   Error State
+======================================== */
+.swiper-error {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-icon {
+  font-size: 6rem;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+.error-text {
+  color: #e53935;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.retry-btn {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.retry-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+/* ========================================
+   Empty State
+======================================== */
+.swiper-empty {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 8rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.empty-text {
+  color: #6c757d;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   Swiper Main Styles
+======================================== */
+.mySwiper {
+  width: 100%;
+  height: 100vh; /* يغطي الشاشة كاملة */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Slide Container */
+.slide-container {
+  display: flex;
+  justify-content: center; /* وسط أفقياً */
+  align-items: center;     /* وسط عمودياً */
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* خلفية مغبشة باستخدام نفس الصورة */
+.bg-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(25px) brightness(0.6);
+  top: 0;
+  left: 0;
+  z-index: 1;
+  animation: zoomBackground 20s ease-in-out infinite;
+}
+
+@keyframes zoomBackground {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* الصورة في المنتصف */
+.main-img {
+  width: 50%; /* حجم الصورة */
+  max-width: 600px;
+  height: auto;
+  z-index: 2; /* فوق الخلفية */
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
+  animation: fadeInScale 1s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.main-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+}
+
+/* Slide Content (النص والأزرار) */
+.slide-content {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  color: white;
+  animation: slideUp 1s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.slide-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.slide-description {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+
+.slide-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.price-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.price-value {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.slide-btn {
+  text-decoration: none;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.slide-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* تخصيص أزرار التنقل */
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.mySwiper .swiper-button-next::after,
+.mySwiper .swiper-button-prev::after {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.mySwiper .swiper-button-next:hover,
+.mySwiper .swiper-button-prev:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* تخصيص نقاط الصفحات (Pagination) */
+.mySwiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  width: 35px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.5);
+}
+
+.mySwiper .swiper-pagination {
+  bottom: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main-img {
+    width: 60%;
+  }
+
+  .slide-title {
+    font-size: 2.5rem;
+  }
+
+  .slide-description {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .mySwiper {
+    height: 80vh;
+  }
+
+  .main-img {
+    width: 70%;
+  }
+
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .slide-description {
+    font-size: 1.2rem;
+  }
+
+  .slide-price {
+    padding: 0.9rem 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-label {
+    font-size: 1.1rem;
+  }
+
+  .price-value {
+    font-size: 1.8rem;
+  }
+
+  .slide-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mySwiper {
+    height: 70vh;
+  }
+
+  .main-img {
+    width: 80%;
+    max-width: 400px;
+  }
+
+  .slide-content {
+    bottom: 15%;
+  }
+
+  .slide-title {
+    font-size: 1.8rem;
+  }
+
+  .slide-description {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .slide-price {
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .price-label {
+    font-size: 1rem;
+  }
+
+  .price-value {
+    font-size: 1.6rem;
+  }
+
+  .slide-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+
+  .mySwiper .swiper-button-next,
+  .mySwiper .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+  }
+
+  .mySwiper .swiper-button-next::after,
+  .mySwiper .swiper-button-prev::after {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mySwiper {
+    height: 60vh;
+  }
+
+  .main-img {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .slide-content {
+    bottom: 10%;
+    padding: 0 1rem;
+  }
+
+  .slide-title {
+    font-size: 1.5rem;
+  }
+
+  .slide-description {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .slide-price {
+    padding: 0.7rem 1.2rem;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .price-label {
+    font-size: 0.9rem;
+  }
+
+  .price-value {
+    font-size: 1.4rem;
+  }
+
+  .slide-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .mySwiper .swiper-button-next,
+  .mySwiper .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mySwiper .swiper-button-next::after,
+  .mySwiper .swiper-button-prev::after {
+    font-size: 16px;
+  }
+
+  .mySwiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+
+  .mySwiper .swiper-pagination-bullet-active {
+    width: 25px;
+  }
+}
+
+/* تأثيرات الانتقال السلس */
+.swiper-slide {
+  transition: opacity 0.5s ease;
+}
+
+.swiper-slide-active .main-img {
+  animation: fadeInScale 1s ease;
+}
+
+.swiper-slide-active .slide-content {
+  animation: slideUp 1s ease;
+}

@@ -1,0 +1,372 @@
+.order-address-container {
+  min-height: 90vh;
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Header */
+.address-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.6s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.address-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1e3c72;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  font-size: 3.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.address-subtitle {
+  color: #6c757d;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Form Card */
+.address-form-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(30, 60, 114, 0.15);
+  padding: 3rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Groups */
+.form-group-custom {
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+
+.form-label-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e3c72;
+  margin-bottom: 0.8rem;
+}
+
+.label-icon {
+  font-size: 1.3rem;
+}
+
+.required {
+  color: #e53935;
+  margin-right: 0.3rem;
+  font-size: 1.2rem;
+}
+
+/* Form Inputs */
+.form-input-custom,
+.form-textarea-custom {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  color: #1e3c72;
+  font-weight: 500;
+}
+
+.form-input-custom:focus,
+.form-textarea-custom:focus {
+  outline: none;
+  border-color: #1e3c72;
+  background: white;
+  box-shadow: 0 5px 20px rgba(30, 60, 114, 0.15);
+  transform: translateY(-2px);
+}
+
+.form-input-custom::placeholder,
+.form-textarea-custom::placeholder {
+  color: #bdbdbd;
+  font-weight: 400;
+}
+
+.form-textarea-custom {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+/* Input Error State */
+.input-error {
+  border-color: #e53935;
+  background: #ffebee;
+}
+
+.input-error:focus {
+  border-color: #e53935;
+  box-shadow: 0 5px 20px rgba(229, 57, 53, 0.15);
+}
+
+/* Error Message */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #e53935;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.error-icon {
+  font-size: 1.1rem;
+}
+
+/* Form Actions */
+.form-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-address-btn {
+  padding: 1.2rem 4rem;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-address-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.submit-address-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.submit-address-btn:hover {
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(76, 175, 80, 0.4);
+}
+
+.submit-address-btn:active {
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Address Preview Card */
+.address-preview-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(30, 60, 114, 0.15);
+  padding: 2.5rem;
+  animation: fadeIn 0.6s ease;
+  border: 3px dashed #1e3c72;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.preview-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e3c72;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.preview-icon {
+  font-size: 2rem;
+}
+
+.preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.preview-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+
+.preview-item:hover {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  transform: translateX(-5px);
+  box-shadow: 0 5px 20px rgba(30, 60, 114, 0.2);
+}
+
+.preview-item:hover .preview-label,
+.preview-item:hover .preview-value {
+  color: white;
+}
+
+.preview-label {
+  font-weight: 700;
+  color: #1e3c72;
+  min-width: 100px;
+  font-size: 1.05rem;
+}
+
+.preview-value {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 1.05rem;
+  flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order-address-container {
+    padding: 2rem 0;
+  }
+
+  .address-title {
+    font-size: 2.2rem;
+  }
+
+  .title-icon {
+    font-size: 2.5rem;
+  }
+
+  .address-form-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .submit-address-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 2rem;
+  }
+
+  .address-preview-card {
+    padding: 1.5rem;
+  }
+
+  .preview-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .preview-label {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .address-form-card {
+    padding: 1.5rem 1rem;
+    border-radius: 15px;
+  }
+
+  .address-title {
+    font-size: 1.8rem;
+  }
+
+  .form-label-custom {
+    font-size: 1rem;
+  }
+
+  .form-input-custom,
+  .form-textarea-custom {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .preview-title {
+    font-size: 1.4rem;
+  }
+}
